@@ -1,26 +1,41 @@
--- Pink hamburger file is a migration file
-
-DROP TABLE IF EXISTS productions;
-DROP TABLE IF EXISTS purchases;
-
-CREATE TABLE `productions`(
+CREATE TABLE `location`(
     `id` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `title` VARCHAR(255) NOT NULL,
-    `description` VARCHAR(255),
-    `budget` INT NOT NULL
+    `name` CHAR(255) NOT NULL,
+    `image` CHAR(255) NOT NULL,
+    `country` CHAR(255) NOT NULL,
+    `culture` CHAR(5000) NOT NULL,
 );
-CREATE TABLE `purchases`(
+CREATE TABLE `junction_table`(
     `id` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `production_id` INT NOT NULL COMMENT 'For which show or production did you make this purchase?',
-    `date` DATE NOT NULL COMMENT 'When did you make this purchase?',
-    `order_num` INT NOT NULL COMMENT 'What are the last four digits of the order number?',
-    `vender` VARCHAR(255) NOT NULL COMMENT 'From what company or store did you buy these things?',
-    `items` INT NOT NULL,
-    `description` VARCHAR(255) NULL COMMENT 'What specific item(s) were purchased in this transaction?',
-    `payment_type` VARCHAR(255) NOT NULL COMMENT 'How did you pay for these things?',
-    `total` DECIMAL(8, 2) NOT NULL COMMENT 'What is the total cost of this ENTIRE PURCHASE as shown on the receipt?',
-    `reimb_submitted` BOOLEAN NOT NULL,
-    `reimb_received` BOOLEAN NOT NULL
+    `recipe_id` INT NOT NULL,
+    `restriction_id` INT NOT NULL
+);
+CREATE TABLE `users`(
+    `id` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `name` CHAR(255) NOT NULL,
+    `username` CHAR(20) NOT NULL,
+    `password` CHAR(20) NOT NULL
+);
+CREATE TABLE `recipes`(
+    `id` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `title` CHAR(255) NOT NULL,
+    `image` CHAR(255) NOT NULL,
+    `servings` INT NOT NULL,
+    `instructions` CHAR(5000) NOT NULL,
+    `culture_desc` CHAR(5000) NOT NULL,
+    `country` CHAR(100) NOT NULL,
+    `region` CHAR(255) NOT NULL
+);
+CREATE TABLE `restrictions`(
+    `id` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `name` CHAR(255) NOT NULL
+);
+CREATE TABLE `ingredients`(
+    `id` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `recipe_id` INT NOT NULL,
+    `item` CHAR(255) NOT NULL,
+    `quantity` INT NOT NULL,
+    `unit` CHAR(255) NOT NULL
 );
 
 
