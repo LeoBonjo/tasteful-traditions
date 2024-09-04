@@ -170,7 +170,7 @@ router.post("/recipes", async function (req, res) {
     );
     let recipeId;
     const checkRecipeId = await db(`
-      SELECT * FROM recipes WHERE title = "${title}"
+      SELECT * FROM recipes ORDER BY id DESC LIMIT 1
     `);
     if (checkRecipeId.data.length > 0) {
       recipeId = checkRecipeId.data[0].id;
@@ -179,31 +179,33 @@ router.post("/recipes", async function (req, res) {
     }
 
     // Insert ingredients and recipe_ingredients junction
+    // Do we need to INSERT the data into the recipes_ingredients junction table before we can do the ingredients table?
     for (const ingredient of ingredients) {
       let ingredientId;
       const checkForIngredient = await db(`
-      SELECT * FROM ingredients WHERE ingredient = "${ingredient}"
+      SELECT * FROM ingredients WHERE ingredient = "${ingredient.ingredient}"
       `);
+      console.log("checking for ingredient", ingredient.ingredient);
       if (checkForIngredient.data.length > 0) {
+        console.log("ingredient exists!!", checkForIngredient.data[0].id);
         ingredientId = checkForIngredient.data[0].id;
       } else {
-        `INSERT INTO ingredients (
+        await db(`INSERT INTO ingredients (
       ingredient
     ) VALUES (
-      "${ingredient}"
-    );`;
-        await db(`SELECT * FROM ingredients ORDER BY id DESC LIMIT 1`);
+      "${ingredient.ingredient}"
+    );`);
+        const resultIngredient = await db(
+          `SELECT * FROM ingredients ORDER BY id DESC LIMIT 1`
+        ); // Is this necessary here ?
+        ingredientId = resultIngredient.data[0].id;
+        console.log(
+          "ingredient does NOT exist, this is the new ingredient id:",
+          ingredientId
+        );
       }
 
-      // Do I need recipes_ingredients.id???
-      let RecipesIngredientsId;
-      const checkForRecipesIngredientsId = await db(
-        `SELECT * FROM recipes_ingredients WHERE recipe_id = ${recipeId}`
-      );
-      console.log("HELLO?!!!!!");
-      if (checkForRecipesIngredientsId.data.length > 0) {
-        RecipesIngredientsId = checkForRecipesIngredientsId.data[0].id;
-      } else {
+      await db(
         `INSERT INTO recipes_ingredients (
         ingredient_id,
         recipe_id,
@@ -212,47 +214,41 @@ router.post("/recipes", async function (req, res) {
       ) VALUES (
         ${ingredientId},
         ${recipeId},
-        ${quantity},
-        "${unit}"
-      ); `;
-        await db(`SELECT * FROM recipes_ingredients ORDER BY id DESC LIMIT 1`);
-      }
+        ${ingredient.quantity},
+        "${ingredient.unit}"
+      ); `
+      );
     }
 
     // Insert restrictions and recipes_restrictions junction
     for (const restriction of restrictions) {
       let restrictionId;
       const checkForRestriction = await db(`
-      SELECT * FROM RESTRICTIONS WHERE restriction = "${restriction}"
+      SELECT * FROM RESTRICTIONS WHERE restriction = "${restriction.restriction}"
       `);
       console.log("HELLO?");
       if (checkForRestriction.data.length > 0) {
         restrictionId = checkForRestriction.data[0].id;
       } else {
-        `INSERT INTO restrictions (
+        await db(`INSERT INTO restrictions (
           restriction
         ) VALUES (
-          "${restriction}
-        );`;
-        await db(`SELECT * FROM restrictions ORDER BY id DESC LIMIT 1`);
+          "${restriction.restriction}
+        );`);
+        const resultRestriction = await db(
+          `SELECT * FROM restrictions ORDER BY id DESC LIMIT 1`
+        );
+        restrictionId = resultRestriction.data[0].id;
       }
-      // I believe that here I need a recipes_restrictions.id...
-      let RecipesRestrictionsId;
-      const checkForRecipesRestrictionsId = await db(`
-      SELECT * FROM recipes_restrictions WHERE recipe_id = ${recipeId}`);
-      console.log("AM I HERE?");
-      if (checkForRecipesRestrictionsId.data.length > 0) {
-        console.log("Length is greater than zero");
-        RecipesRestrictionsId = checkForRecipesRestrictionsId.data[0].id;
-      } else {
-        `INSERT INTO recipes_restrictions (
+
+      await db(`INSERT INTO recipes_restrictions (
       recipe_id,
       restriction_id
     ) VALUES (
       ${recipeId},
       ${restrictionId}
-    ); `;
-      }
+    ); `);
+
       res.status(201).json({ message: "Recipe added!" });
     }
   } catch (error) {
