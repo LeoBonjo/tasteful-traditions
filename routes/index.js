@@ -85,13 +85,26 @@ router.delete("/recipes/:id", async function (req, res) {
   try {
     let recipeId = req.params.id;
     let result = await db(`SELECT * FROM recipes WHERE id = ${recipeId}`);
-    console.log(result.data.length);
+
     if (result.data.length === 1) {
-      await db(`DELETE FROM recipes_ingredients WHERE recipe_id = ${recipeId}`);
-      console.log("hello");
-      await db(
-        `DELETE FROM recipes_restrictions WHERE recipe_id = ${recipeId}`
+      let result = await db(
+        `SELECT * FROM recipes_ingredients WHERE recipe_id = ${recipeId}`
       );
+      if (result.data.length) {
+        await db(
+          `DELETE FROM recipes_ingredients WHERE recipe_id = ${recipeId}`
+        );
+      }
+
+      result = await db(
+        `SELECT * FROM recipes_restrictions WHERE recipe_id = ${recipeId}`
+      );
+      if (result.data.length) {
+        await db(
+          `DELETE FROM recipes_restrictions WHERE recipe_id = ${recipeId}`
+        );
+      }
+
       await db(`DELETE FROM recipes WHERE id = ${recipeId}`);
       res.send({ message: "The recipe was deleted" });
     } else {
@@ -128,53 +141,122 @@ router.post("/recipes", async function (req, res) {
     culture_desc,
     country,
     region,
-    ingredient,
+    ingredients,
     quantity,
     unit,
-    restriction,
+    restrictions,
   } = req.body;
+  console.log(req.body);
+
   try {
-    let sql = `
-  INSERT INTO recipes (
-    title,
-    image,
-    servings,
-    instructions,
-    culture_desc,
-    country,
-    region
-    )
-    VALUES (
-      ${title},
-      ${image},
+    const result = await db(
+      `INSERT INTO recipes (
+      title,
+      image,
+      servings,
+      instructions,
+      culture_desc,
+      country,
+      region
+    ) VALUES (
+      "${title}", 
+      "${image}",
       ${servings},
-      ${instructions},
-      ${culture_desc},
-      ${country},
-      ${region},
-      ${ingredients},
-      ${restrictions}
-  ) INSERT INTO ingredients WHERE recipe id ... ? (
-    ingredient
-  ) VALUES (
-    ${ingredient}
-  ) INSERT INTO recipes_ingredients WHERE recipe id ... ? (
-    quantity,
-    unit
-  ) VALUES (
-    ${quantity},
-    ${unit}
-  ) INSERT INTO restrictions WHERE recipe id .... ? (
-    restriction
-  ) VALUES (
-    ${restriction}
-  )
-  `;
-    await db(sql);
-    let result = await db("select * from recipes");
-    res.status(201).send(result.data);
-  } catch (err) {
-    res.status(500).send({ error: err.message });
+      "${instructions}",
+      "${culture_desc}",
+      "${country}",
+      "${region}"
+    )`
+    );
+    let recipeId;
+    const checkRecipeId = await db(`
+      SELECT * FROM recipes WHERE title = "${title}"
+    `);
+    if (checkRecipeId.data.length > 0) {
+      recipeId = checkRecipeId.data[0].id;
+    } else {
+      result;
+    }
+
+    // Insert ingredients and recipe_ingredients junction
+    for (const ingredient of ingredients) {
+      let ingredientId;
+      const checkForIngredient = await db(`
+      SELECT * FROM ingredients WHERE ingredient = "${ingredient}"
+      `);
+      if (checkForIngredient.data.length > 0) {
+        ingredientId = checkForIngredient.data[0].id;
+      } else {
+        `INSERT INTO ingredients (
+      ingredient
+    ) VALUES (
+      "${ingredient}"
+    );`;
+        await db(`SELECT * FROM ingredients ORDER BY id DESC LIMIT 1`);
+      }
+
+      // Do I need recipes_ingredients.id???
+      let RecipesIngredientsId;
+      const checkForRecipesIngredientsId = await db(
+        `SELECT * FROM recipes_ingredients WHERE recipe_id = ${recipeId}`
+      );
+      console.log("HELLO?!!!!!");
+      if (checkForRecipesIngredientsId.data.length > 0) {
+        RecipesIngredientsId = checkForRecipesIngredientsId.data[0].id;
+      } else {
+        `INSERT INTO recipes_ingredients (
+        ingredient_id,
+        recipe_id,
+        quantity,
+        unit
+      ) VALUES (
+        ${ingredientId},
+        ${recipeId},
+        ${quantity},
+        "${unit}"
+      ); `;
+        await db(`SELECT * FROM recipes_ingredients ORDER BY id DESC LIMIT 1`);
+      }
+    }
+
+    // Insert restrictions and recipes_restrictions junction
+    for (const restriction of restrictions) {
+      let restrictionId;
+      const checkForRestriction = await db(`
+      SELECT * FROM RESTRICTIONS WHERE restriction = "${restriction}"
+      `);
+      console.log("HELLO?");
+      if (checkForRestriction.data.length > 0) {
+        restrictionId = checkForRestriction.data[0].id;
+      } else {
+        `INSERT INTO restrictions (
+          restriction
+        ) VALUES (
+          "${restriction}
+        );`;
+        await db(`SELECT * FROM restrictions ORDER BY id DESC LIMIT 1`);
+      }
+      // I believe that here I need a recipes_restrictions.id...
+      let RecipesRestrictionsId;
+      const checkForRecipesRestrictionsId = await db(`
+      SELECT * FROM recipes_restrictions WHERE recipe_id = ${recipeId}`);
+      console.log("AM I HERE?");
+      if (checkForRecipesRestrictionsId.data.length > 0) {
+        console.log("Length is greater than zero");
+        RecipesRestrictionsId = checkForRecipesRestrictionsId.data[0].id;
+      } else {
+        `INSERT INTO recipes_restrictions (
+      recipe_id,
+      restriction_id
+    ) VALUES (
+      ${recipeId},
+      ${restrictionId}
+    ); `;
+      }
+      res.status(201).json({ message: "Recipe added!" });
+    }
+  } catch (error) {
+    res.status(500).send({ message: error.message });
   }
 });
 
