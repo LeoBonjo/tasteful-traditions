@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=La+Belle+Aurore&display=swap');
+
+
+.countries-page .countries-page-title {
+  font-family: "La Belle Aurore", cursive;
+  font-weight: 400;
+  font-size: 280%;
+  padding-top: 15px;
+}
+
+.countries-page .card-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+  }
+  
+  .countries-page .card {
+    border: none !important;
+    padding: 0;
+  }
+  
+  .countries-page .card .card-img-top {
+    border-radius: 0px;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    width: 100%;
+    height: auto;
+  }
+  
+  .countries-page .card .card-title {
+    margin: 0;
+  }
+  
+  .countries-page .card a {
+    color: black;
+    text-decoration: none;
+    font-weight: normal;
+    font-family: "Permanent Marker", cursive;
+  }
+  
+  .countries-page .card a:hover {
+    color: black;
+    opacity: 0.8;
+  }
+
+  .countries-page .card-body {
+    padding-bottom: 0.5 !important;
+  }

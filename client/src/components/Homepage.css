@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=La+Belle+Aurore&display=swap');
+
+.homepage {
+    padding: 20px;
+}
+
+.homepage h2 {
+    font-family: "La Belle Aurore", cursive;
+    font-weight: 400;
+    padding-top: 25px;
+  }
+
+.homepage .dish-of-the-day {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.homepage .dish-of-the-day h2 {
+    margin-bottom: 0px;
+    text-align: left;
+    font-weight: normal; 
+    font-size: 32px;
+}
+
+.homepage .dish-of-the-day-wrapper {
+    max-width: 865px; 
+    margin: 0 auto;
+}
+
+.homepage .dish-of-the-day-content {
+    display: flex;
+    justify-content: center;
+    text-align: justify;
+}
+
+.homepage .dish-image {
+    max-width: 50%;
+    height: auto;
+    border: none;
+    object-fit: cover;
+}
+
+.homepage .dish-details {
+    padding-left: 20px;
+}
+
+.homepage .dish-details h3 {
+    margin-top: 6px;
+    margin-bottom: 8px;
+}
+
+.homepage .dish-details p {
+    margin: 0;
+}
+
+.homepage .view-recipe-link {
+    display: block;
+    margin-top: 10px;
+    color: rgb(139, 159, 169); 
+    text-decoration: none;
+    font-size: 14px;
+    font-style: italic;
+    text-align: right;
+}
+
+.homepage .view-recipe-link:hover {
+    color: rgb(168, 194, 205); 
+    text-decoration: none;
+}
+
+.homepage .featured-recipes {
+    text-align: left;
+}
+
+.homepage .featured-recipes h2 {
+    max-width: 865px;
+    margin: 0 auto;
+    font-weight: normal; 
+}
+
+.homepage .featured-recipes-grid {
+    max-width: 1200px; 
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.homepage .recipe-item-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.homepage .recipe-item {
+    width: 200px;
+    border: 0px;
+    text-align: center; 
+}
+
+.homepage .recipe-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border: none;
+}
+
+.homepage .recipe-item h3 {
+    font-size: 18px;
+    padding-top: 10px;
+    margin: 0;
+    text-align: center;
+}
+
+.homepage .recipe-title {
+    margin: 0;
+    padding: 10px;
+    text-align: center;
+    color: black;
+    text-decoration: none;
+}
+
+.homepage .recipe-item h3:hover {
+    color: #6a6a6a;
+}

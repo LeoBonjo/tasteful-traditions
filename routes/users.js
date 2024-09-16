@@ -6,12 +6,13 @@ require("dotenv").config();
 var bcrypt = require("bcrypt");
 const saltRounds = 10;
 const supersecret = process.env.SUPER_SECRET;
+
 router.post("/register", async (req, res) => {
-  const { name, username, password } = req.body;
+  const { username, password } = req.body;
   try {
     const hash = await bcrypt.hash(password, saltRounds);
     await db(
-      `INSERT INTO users (name, username, password) VALUES ("${name}", "${username}", "${hash}")`
+      `INSERT INTO users (username, password) VALUES ("${username}", "${hash}")`
     );
     res.send({ message: "Register successful" });
   } catch (err) {

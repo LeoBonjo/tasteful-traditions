@@ -5,7 +5,6 @@ DROP TABLE IF EXISTS recipes_restrictions;
 DROP TABLE IF EXISTS restrictions;
 DROP TABLE IF EXISTS ingredients;
 DROP TABLE IF EXISTS recipes_ingredients;
-DROP TABLE IF EXISTS junction_table;
 
 CREATE TABLE `location`(
     `id` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -23,11 +22,11 @@ CREATE TABLE `recipes`(
     `id` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `title` CHAR(255) NOT NULL,
     `image` CHAR(255) NOT NULL,
-    `servings` INT NOT NULL,
+    `servings` INT,
     `instructions` VARCHAR(5000) NOT NULL,
-    `culture_desc` VARCHAR(5000) NOT NULL,
+    `culture_desc` VARCHAR(5000),
     `country` CHAR(100) NOT NULL,
-    `region` CHAR(255) NOT NULL
+    `region` CHAR(255)
 );
 
 CREATE TABLE `recipes_restrictions`(

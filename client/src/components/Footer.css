@@ -1,0 +1,19 @@
+.footer {
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: transparent;
+    margin-top: 30px;
+    margin-bottom: -45px;
+  }
+  
+  #social-icon {
+    height: auto;
+    width: 2em;
+    margin: 0 25px;
+    color: rgb(145, 164, 174);
+  }
+  
+  #social-icon :hover {
+    color: rgb(187, 209, 219);
+  }

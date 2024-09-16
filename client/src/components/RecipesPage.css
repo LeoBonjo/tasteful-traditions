@@ -1,0 +1,105 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=La+Belle+Aurore&display=swap');
+
+/* Grid styling for recipes */
+.recipes-page .grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+}
+
+.recipes-page .grid-container img {
+    aspect-ratio: 1 / 1;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    overflow: hidden;
+    position: relative;
+}
+
+.recipes-page .recipe-card {
+    border: none;
+    box-shadow: none;
+    position: relative;
+}
+
+.recipes-page .recipe-title-link {
+    color: black;
+    text-decoration: none;
+}
+
+.recipes-page .recipe-title-link:hover {
+    color: #6a6a6a;
+}
+
+.recipes-page p {
+    margin-top: -5px;
+    font-size: 15px;
+}
+
+.recipes-page .page-title {
+    font-family: "La Belle Aurore", cursive;
+    margin-bottom: 5px;
+}
+
+.recipes-page .recipe-title {
+    font-family: "Permanent Marker", cursive;
+    font-size: 23px;
+    margin-top: 5px;
+}
+
+.recipes-page .recipe-img {
+    position: relative;
+}
+
+.recipes-page .dietary-info-box {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: rgb(187, 209, 219);
+    color: white;
+    font-weight: bold;
+    padding: 2px 8px;
+    font-size: 12px;
+    height: 25px;
+    line-height: 20px;
+    border-radius: 5px;
+    margin: 8px;
+    overflow: hidden;
+}
+
+.recipes-page .dietary-info-box:empty {
+    display: none;
+}
+
+.recipes-page .search-form {
+    padding-right: 80px;
+}
+
+.recipes-page .search-form select {
+    background-color: transparent;
+    border: transparent;
+    border-radius: 0; 
+    box-shadow: none; 
+    width: 108px;
+    margin-left: 66%;
+}
+
+.recipes-page .search-form .form-control {
+width: 115%;
+}
+
+.recipes-page .search-form .search-icon {
+    cursor: pointer;
+    width: 26px;
+    padding-bottom: 3px;
+    margin-right: 60%;
+}
+
+.recipes-page .search-form .form-control:focus {
+    border-color: black;
+    box-shadow: none;
+    outline: none;
+}
+

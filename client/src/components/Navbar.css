@@ -1,0 +1,68 @@
+.navbar {
+    position: fixed;
+    width: 100%;
+    background-color: transparent;
+    border-bottom: 0px;
+    margin-top: -20px;
+    margin-bottom: 20px;
+    z-index: 1000;
+  }
+  
+  .navbar-left,
+  .navbar-right {
+    display: flex;
+    gap: 2rem;
+    justify-content: space-between;
+    align-items: center; 
+  }
+
+  .navbar-logo {
+    height: 35px;
+    margin-right: 10px;
+}
+
+  .navbar-search {
+    position: relative;
+    margin-left: auto;
+    margin-right: 110px;
+  }
+  
+  .navbar-search input {
+    padding: 0.5rem;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    width: 140%;
+    outline: none;
+  }
+
+  .navbar a {
+    color: black;
+    text-decoration: none;
+    font-weight: normal; 
+  }
+  
+  .navbar a:hover {
+    color:#6a6a6a;
+  }  
+  
+  .suggestions-list {
+    position: absolute;
+    top: 100%;
+    width: 140%;
+    background: white;
+    border: 1px solid #ced4da;
+    border-top: none;
+    list-style-type: none;
+    padding: 0;
+    z-index: 1000;
+  }
+  
+  .suggestions-list li {
+    padding: 0.5rem;
+    cursor: pointer;
+  }
+  
+  .suggestions-list li:hover {
+    background-color:#f9f9f9;
+  }
+  

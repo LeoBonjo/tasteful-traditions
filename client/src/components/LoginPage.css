@@ -1,0 +1,64 @@
+
+.login-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-page .logo {
+    margin-top: -100px;
+    width: 350px;
+}
+
+.login-page .login-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.login-page .btn {
+    margin: 5px;
+}
+
+.login-page .btn-primary {
+    background-color: rgb(139, 159, 169);
+    border: none;
+    color: white;
+}
+
+.login-page .btn-primary:hover {
+    background-color: rgb(187, 209, 219);
+    color: white; 
+}
+
+.login-page .btn-outline-dark {
+    border-color: rgb(139, 159, 169);
+    color: rgb(139, 159, 169);
+}
+
+.login-page .btn-outline-dark:hover {
+    background-color: rgb(139, 159, 169);
+    color: white;
+}
+
+.login-page .btn-outline-dark:hover {
+    background-color: rgb(187, 209, 219);
+    border-color: rgb(187, 209, 219);
+    color: white;
+}
+
+.go-back-link {
+    border-color: rgb(139, 159, 169);
+    color: rgb(139, 159, 169);
+    text-decoration: none;
+}
+
+.go-back-link:hover {
+color: rgb(187, 209, 219);
+}
