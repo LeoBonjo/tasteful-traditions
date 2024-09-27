@@ -16,6 +16,7 @@ export default defineConfig({
   build: {
     rollupOptions: {
       external: ["google-maps-react"],
+      external: ["react-icons/fa"],
     },
   },
 });
