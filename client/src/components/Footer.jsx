@@ -1,10 +1,11 @@
-import { FaGithubSquare, FaLinkedin, FaTwitterSquare } from "react-icons/fa";
+// import { FaGithubSquare, FaLinkedin, FaTwitterSquare } from "react-icons/fa";
 import "./Footer.css";
 
 const Footer = () => {
   return (
     <div className="footer">
-      <a href="#">
+      <p>Thank you for visiting us!</p>
+      {/* <a href="#">
         <FaGithubSquare
           id="social-icon"
           target="_blank"
@@ -23,7 +24,7 @@ const Footer = () => {
           id="social-icon"
           className="h-8 w-8 text-slate-500 hover:text-black duration-300"
         />
-      </a>
+      </a> */}
     </div>
   );
 };
