@@ -3,10 +3,6 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import { faCircleChevronLeft } from "@fortawesome/free-solid-svg-icons";
-import Badge from "react-bootstrap/Badge";
-import Stack from "react-bootstrap/Stack";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const RecipePage = () => {
   const [recipeData, setRecipeData] = useState(null);
@@ -44,10 +40,8 @@ const RecipePage = () => {
       <Navbar />
       <div className="recipe-page-container">
         <div className="back-to-all">
-          <Link to="/recipes">
-            <h3 className="fontawesome-icon">
-              <FontAwesomeIcon icon={faCircleChevronLeft} /> All Recipes
-            </h3>
+          <Link to="/recipes" className="go-back-link">
+            ← Go back
           </Link>
         </div>
 
@@ -74,10 +68,8 @@ const RecipePage = () => {
         </div>
 
         <div className="recipe-description">
-        <div className="ingredients-instructions">
-        <h3 className="servings">
-            {servings} Servings
-          </h3>
+          <div className="ingredients-instructions">
+            <h3 className="servings">{servings} Servings</h3>
             <div className="ingredients">
               <h3 className="ing-title">Ingredients</h3>
               <ul className="ingredients-list">
@@ -94,12 +86,14 @@ const RecipePage = () => {
               <p>{instructions}</p>
             </div>
           </div>
-          </div>
-          <p className="culture-desc">
-           <b> Did you know...?</b><p></p>
-            {culture_desc}</p>
         </div>
-     
+        <p className="culture-desc">
+          <b> Did you know...?</b>
+          <p></p>
+          {culture_desc}
+        </p>
+      </div>
+
       <Footer />
     </>
   );

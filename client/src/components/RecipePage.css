@@ -1,200 +1,210 @@
-@import url('https://fonts.googleapis.com/css2?family=La+Belle+Aurore&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Zeyada&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=La+Belle+Aurore&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Zeyada&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap");
 
 .recipe-page-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    max-width: 1200px;
-    margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  max-width: 1200px;
+  margin: auto;
 }
 
 .recipe-page-container .back-to-all {
-    align-self: flex-start;
-    width: 100%;
-    margin-bottom: 20px;
+  display: flex;
+  font-size: 20px;
+  align-self: flex-start;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.recipe-page-container .back-to-all .go-back-link {
+  border-color: rgb(139, 159, 169);
+  color: rgb(139, 159, 169);
+  text-decoration: none;
+}
+
+.recipe-page-container .back-to-all .go-back-link:hover {
+  color: rgb(187, 209, 219);
 }
 
 .recipe-page-container .back-to-all a {
-    text-decoration: none;
-    color: #000000;
+  text-decoration: none;
+  color: #000000;
 }
 
 .recipe-page-container .back-to-all a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 .recipe-page-container .recipe-header {
-    text-align: center;
-    margin-bottom: 20px;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .recipe-page-container .recipe-title {
-    font-size: 2.5em;
-    margin: 0;
-    font-family: "La Belle Aurore", cursive;
-    margin-bottom: -20px;
+  font-size: 2.5em;
+  margin: 0;
+  font-family: "La Belle Aurore", cursive;
+  margin-bottom: -20px;
 }
 
 .recipe-page-container .recipe-image-container {
-    position: relative;
-    width: 100%;
-    max-width: 600px;
-    margin-bottom: 20px;
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 20px;
 }
 
 .recipe-page-container .image-wrapper {
-    width: 100%;
-    padding-top: 100%;
-    position: relative;
-    overflow: hidden;
+  width: 100%;
+  padding-top: 100%;
+  position: relative;
+  overflow: hidden;
 }
 
 .ing-title {
-    padding-bottom: 5px;
+  padding-bottom: 5px;
 }
 
 .recipe-page-container .recipe-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .recipe-page-container .dietary-info-box {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    background-color: transparent;
-    color: white;
-    font-weight: bold;
-    padding: 5px;
-    font-size: 12px;
-    border-radius: 5px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px; 
-    justify-content: flex-start; 
-    z-index: 10; 
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: transparent;
+  color: white;
+  font-weight: bold;
+  padding: 5px;
+  font-size: 12px;
+  border-radius: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  justify-content: flex-start;
+  z-index: 10;
 }
 
 .recipe-page-container .restriction {
-    padding: 5px 10px;
-    font-size: 0.9em;
-    border-radius: 5px;
-    background-color: rgb(139, 157, 165);
-    border: 1px solid rgb(139, 157, 165);
-    display: inline-flex;
-    align-items: center;
+  padding: 5px 10px;
+  font-size: 0.9em;
+  border-radius: 5px;
+  background-color: rgb(139, 157, 165);
+  border: 1px solid rgb(139, 157, 165);
+  display: inline-flex;
+  align-items: center;
 }
 
 .recipe-page-container .recipe-meta {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 600px;
-    margin-top: -15px;
-    margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 600px;
+  margin-top: -15px;
+  margin-bottom: 10px;
 }
 
 .recipe-page-container .region,
 .recipe-page-container .country {
-    font-size: 16px;
-    background-color: transparent; 
-    border-radius: 5px;
-    width: 48%; 
+  font-size: 16px;
+  background-color: transparent;
+  border-radius: 5px;
+  width: 48%;
 }
 
 .recipe-page-container .region {
-    text-align: left; 
+  text-align: left;
 }
 
 .recipe-page-container .country {
-    text-align: right; 
+  text-align: right;
 }
 
 .recipe-page-container .ingredients-instructions {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    max-width: 800px; 
-    margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 800px;
+  margin-bottom: 20px;
 }
 
 .recipe-page-container .ingredients {
-    margin-bottom: 20px;
-    width: 100%;
-    line-height: 1.2;
+  margin-bottom: 20px;
+  width: 100%;
+  line-height: 1.2;
 }
 
 .recipe-page-container .ingredients-list {
-    list-style-type: none; 
-    padding: 0;
-    max-width: 600px;
+  list-style-type: none;
+  padding: 0;
+  max-width: 600px;
 }
 
 .recipe-page-container .ingredients-list li {
-    margin-bottom: 5px;
+  margin-bottom: 5px;
 }
 
-
 .recipe-page-container .inst-title {
-    text-align: center;
-
+  text-align: center;
 }
 
 .recipe-page-container .instructions {
-    max-width: 600px;
-    white-space: pre-wrap;
-    line-height: 1.4;
+  max-width: 600px;
+  white-space: pre-wrap;
+  line-height: 1.4;
 }
 
 .recipe-page-container .recipe-description {
-    width: 100%;
-    max-width: 600px;
-    margin-top: 20px;
+  width: 100%;
+  max-width: 600px;
+  margin-top: 20px;
 }
 
 .recipe-page-container .servings {
-padding-left: 10px;
-padding-bottom: 5px;
-text-align: left;
-font-size: 18px;
+  padding-left: 10px;
+  padding-bottom: 5px;
+  text-align: left;
+  font-size: 18px;
 }
 
 .recipe-page-container .culture-desc {
-    margin-top: 10px;
-    text-align: justify;
-    color: black;
-    width: 600px;
+  margin-top: 10px;
+  text-align: justify;
+  color: black;
+  width: 600px;
 }
 
 .recipe-page-container .ingredients-instructions {
-    background-image: url('https://img.freepik.com/premium-vector/squared-paper-texture-notebook-page-cage_159025-44.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    padding: 20px;
-    color: rgb(0, 10, 100);
-    width: 100%;
-    height: 100%;
-    font-family: "Gloria Hallelujah", cursive;
-    font-size: 18px;
+  background-image: url("https://img.freepik.com/premium-vector/squared-paper-texture-notebook-page-cage_159025-44.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 20px;
+  color: rgb(0, 10, 100);
+  width: 100%;
+  height: 100%;
+  font-family: "Gloria Hallelujah", cursive;
+  font-size: 18px;
 }
 
 .ingredients-instructions h3 {
-    font-size: 28px;
-    font-weight: 800;
+  font-size: 28px;
+  font-weight: 800;
 }
 
 .fontawesome-icon {
-font-size: 12px;
-text-align: left;
-margin-left: -6px;
-margin-top: -30px;
+  font-size: 12px;
+  text-align: left;
+  margin-left: -6px;
+  margin-top: -30px;
 }
