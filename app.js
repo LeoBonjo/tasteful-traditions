@@ -16,11 +16,14 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 // app.use(express.static(path.join(__dirname, "public")));
 
-// shows that the backend is deployed successfully
-app.get("/", (req, res) => {
-  res.send("Welcome to the API!");
-});
+// Serve static files from the React frontend app
+app.use(express.static(path.join(__dirname, "/client/dist")));
+
 app.use("/api", indexRouter);
 app.use("/api/users", usersRouter);
 
+// Anything that doesn't match the above, send back to index.html
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname + "/client/dist/index.html"));
+});
 module.exports = app;
